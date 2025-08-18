@@ -19,3 +19,11 @@ Get-Content -path "makefile" | Select-String '^[a-zA-Z_-]+:.*?## .*$$' | ForEach
 # hello      Displays world
 # help       Show this help
 # world      Runs hello
+
+# Version three (Seperate colours)
+Function Make-Help {
+    Get-Content -path "makefile" | Select-String '^[a-zA-Z_-]+:.*?## .*$$' | ForEach-Object { 
+      ($_ -split '(:)')[0].PadRight(20) | Write-Host -ForegroundColor Cyan -NoNewline
+      ($_ -split ':.*?## ')[1] | Write-Host
+    }
+}
